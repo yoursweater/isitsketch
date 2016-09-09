@@ -36,9 +36,7 @@ $(document).ready(function() {
 //////////////////NYC OPENDATA///////////////////
 
   var getOpendata = function () {
-    console.log("again My longitude is: " + myLongitude + " and my latitude is: " + myLatitude);
     var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20200)and%20occurrence_year%20=%202015';
-    console.log(root);
 
     $.ajax({
       dataType: 'json',
