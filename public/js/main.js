@@ -15,7 +15,23 @@ $(document).ready(function() {
     console.log(data)
   });
 
+
+
 //////////////SKETCH CALCULATOR////////////////
+const geocoder = require('node-geocoder')
+var geocoderProvider = 'google';
+var httpAdapter = 'http';var extra = {
+    apiKey: 'AIzaSyCntAAyLzBvr5AnPIyqQXmObbtybrkPlr0', // for map quest
+    formatter: null         // 'gpx', 'string', ...
+};
+
+geocoder.getGeocoder(geocoderProvider, httpAdapter, extra);
+
+// Using callback
+geocoder.geocode('29 champs elysée paris', function(err, res) {
+    console.log(res);
+});
+
 
 
 });
