@@ -4,7 +4,11 @@ const app = express()
 const port = 3000
 const path = require('path')
 const exphbs = require('express-handlebars')
-var requirejs = require('requirejs')
+var requirejs = require('requirejs');
+
+
+
+
 
 //Http server
 
@@ -14,7 +18,6 @@ var NodeGeocoder = require('node-geocoder');
 
 var options = {
   provider: 'google',
-
   // Optional depending on the providers
   httpAdapter: 'https', // Default
   apiKey: 'AIzaSyDPMSlU4RW9QMz8ceTsBbBevwtLJvOLDAQ', // for Mapquest, OpenCage, Google Premier
@@ -22,10 +25,10 @@ var options = {
 };
 
 var geocoder = NodeGeocoder(options);
-
 // Using callback
-geocoder.geocode('303 w 120th street, new york ny', function(err, res) {
-  console.log(res);
+geocoder.geocode('10027', function(err, res) {
+  console.log(res[0]['latitude']);
+  console.log(res[0]['longitude']);
 });
 
   response.render('home', {})
