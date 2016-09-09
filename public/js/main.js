@@ -36,7 +36,7 @@ $(document).ready(function() {
 //////////////////NYC OPENDATA///////////////////
 
   var getOpendata = function () {
-    var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20200)and%20occurrence_year%20=%202015';
+    var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20500)and%20occurrence_year%20=%202015';
 
     $.ajax({
       dataType: 'json',
@@ -50,13 +50,13 @@ $(document).ready(function() {
 //////////////SKETCH CALCULATOR////////////////
 
 /*
-Rape: 9
-Robbery: 6
-Homicide: 10
+Rape: 25
+Robbery: 10
+Homicide: 30
 Grand Larceny: 1
-Grand Theft Auto: 3
-Burglary: 5
-Felony Assault: 8
+Grand Theft Auto: 6
+Burglary: 8
+Felony Assault: 20
 */
 
 function sketchCalc(input){
@@ -68,6 +68,7 @@ function sketchCalc(input){
   var gta = 0
   var burglary = 0
   var assault = 0
+
 
   console.log(input[0]['offense'])
 
@@ -102,6 +103,9 @@ console.log(grandLarceny)
 console.log(gta)
 console.log(burglary)
 console.log(assault)
+
+  var totalSketch = ((rape*25)+(robbery*10)+(homicide*30)+(grandLarceny)+(gta*6)+(burglary*8)+(assault*20))
+console.log("Your sketch level is: " + totalSketch)
 
 }
 
