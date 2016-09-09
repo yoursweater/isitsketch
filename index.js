@@ -29,6 +29,7 @@ var geocoder = NodeGeocoder(options);
 geocoder.geocode('10027', function(err, res) {
   console.log(res[0]['latitude']);
   console.log(res[0]['longitude']);
+
 });
 
   response.render('home', {})
