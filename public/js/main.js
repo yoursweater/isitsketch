@@ -43,10 +43,66 @@ $(document).ready(function() {
       url: root,
       method: 'GET'
     }).then(function(data) {
-      console.log(data)
+      sketchCalc(data);
     });
   }
+
 //////////////SKETCH CALCULATOR////////////////
 
+/*
+Rape: 9
+Robbery: 6
+Homicide: 10
+Grand Larceny: 1
+Grand Theft Auto: 3
+Burglary: 5
+Felony Assault: 8
+*/
+
+function sketchCalc(input){
+  var numOffenses = input.length
+  var rape = 0
+  var robbery = 0
+  var homicide = 0
+  var grandLarceny = 0
+  var gta = 0
+  var burglary = 0
+  var assault = 0
+
+  console.log(input[0]['offense'])
+
+    for(i = 0; i < input.length; i++){
+      if(input[i]['offense'] == "RAPE"){
+        rape++
+      }
+      if(input[i]['offense'] == "ROBBERY"){
+        robbery++
+      }
+      if(input[i]['offense'] == "MURDER & NON-NEGL. MANSLAUGHTE"){
+        homicide++
+      }
+      if(input[i]['offense'] == "GRAND LARCENY"){
+        grandLarceny++
+      }
+      if(input[i]['offense'] == "GRAND LARCENY OF MOTOR VEHICLE"){
+        gta++
+      }
+      if(input[i]['offense'] == "BURGLARY"){
+        burglary++
+      }
+      if(input[i]['offense'] == "FELONY ASSAULT"){
+        assault++
+      }
+    }
+console.log(numOffenses)
+console.log(rape)
+console.log(robbery)
+console.log(homicide)
+console.log(grandLarceny)
+console.log(gta)
+console.log(burglary)
+console.log(assault)
+
+}
 
 });
