@@ -36,18 +36,78 @@ $(document).ready(function() {
 //////////////////NYC OPENDATA///////////////////
 
   var getOpendata = function () {
-    var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20200)and%20occurrence_year%20=%202015';
+    var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20500)and%20occurrence_year%20=%202015';
 
     $.ajax({
       dataType: 'json',
       url: root,
       method: 'GET'
     }).then(function(data) {
-      console.log(data)
+      sketchCalc(data);
     });
   }
+
 //////////////SKETCH CALCULATOR////////////////
 
+/*
+Rape: 25
+Robbery: 10
+Homicide: 30
+Grand Larceny: 1
+Grand Theft Auto: 6
+Burglary: 8
+Felony Assault: 20
+*/
+
+function sketchCalc(input){
+  var numOffenses = input.length
+  var rape = 0
+  var robbery = 0
+  var homicide = 0
+  var grandLarceny = 0
+  var gta = 0
+  var burglary = 0
+  var assault = 0
+
+
+  console.log(input[0]['offense'])
+
+    for(i = 0; i < input.length; i++){
+      if(input[i]['offense'] == "RAPE"){
+        rape++
+      }
+      if(input[i]['offense'] == "ROBBERY"){
+        robbery++
+      }
+      if(input[i]['offense'] == "MURDER & NON-NEGL. MANSLAUGHTE"){
+        homicide++
+      }
+      if(input[i]['offense'] == "GRAND LARCENY"){
+        grandLarceny++
+      }
+      if(input[i]['offense'] == "GRAND LARCENY OF MOTOR VEHICLE"){
+        gta++
+      }
+      if(input[i]['offense'] == "BURGLARY"){
+        burglary++
+      }
+      if(input[i]['offense'] == "FELONY ASSAULT"){
+        assault++
+      }
+    }
+console.log(numOffenses)
+console.log(rape)
+console.log(robbery)
+console.log(homicide)
+console.log(grandLarceny)
+console.log(gta)
+console.log(burglary)
+console.log(assault)
+
+  var totalSketch = ((rape*25)+(robbery*10)+(homicide*30)+(grandLarceny)+(gta*6)+(burglary*8)+(assault*20))
+console.log("Your sketch level is: " + totalSketch)
+
+}
 
 });
 
