@@ -47,6 +47,9 @@ $(document).ready(function() {
     });
   }
 
+//Add this to the end of the query to get 3 years' worth of data instead:
+// %20or%20occurrence_year%20=%202014%20or%20occurrence_year%20=%202013
+
 //////////////SKETCH CALCULATOR////////////////
 
 /*
