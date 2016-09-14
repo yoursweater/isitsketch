@@ -52,8 +52,8 @@ $(document).ready(function() {
 /*
 Rape: 25
 Robbery: 10
-Homicide: 30
-Grand Larceny: 1
+Homicide: 70
+Grand Larceny: none
 Grand Theft Auto: 6
 Burglary: 8
 Felony Assault: 20
@@ -70,7 +70,6 @@ function sketchCalc(input){
   var assault = 0
 
 
-  console.log(input[0]['offense'])
 
     for(i = 0; i < input.length; i++){
       if(input[i]['offense'] == "RAPE"){
@@ -96,15 +95,15 @@ function sketchCalc(input){
       }
     }
 console.log(numOffenses)
-console.log(rape)
-console.log(robbery)
-console.log(homicide)
-console.log(grandLarceny)
-console.log(gta)
-console.log(burglary)
-console.log(assault)
+console.log(rape + " rapes.")
+console.log(robbery + " robberies.")
+console.log(homicide+ " homicides.")
+console.log(grandLarceny+ " thefts.")
+console.log(gta + " stolen cars.")
+console.log(burglary + " burglaries.")
+console.log(assault + " assaults.")
 
-  var totalSketch = ((rape*25)+(robbery*10)+(homicide*30)+(grandLarceny)+(gta*6)+(burglary*8)+(assault*20))
+  var totalSketch = ((rape*25)+(robbery*10)+(homicide*70)+(burglary*8)+(assault*20))
 console.log("Your sketch level is: " + totalSketch)
 
 }
