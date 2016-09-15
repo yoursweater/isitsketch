@@ -43,6 +43,7 @@ $(document).ready(function() {
       url: root,
       method: 'GET'
     }).then(function(data) {
+      console.log(data)
       sketchCalc(data);
     });
   }
@@ -57,7 +58,7 @@ Rape: 25
 Robbery: 10
 Homicide: 70
 Grand Larceny: none
-Grand Theft Auto: 6
+Grand Theft Auto: none
 Burglary: 8
 Felony Assault: 20
 */
@@ -72,41 +73,123 @@ function sketchCalc(input){
   var burglary = 0
   var assault = 0
 
+  var rape2 = 0
+  var robbery2 = 0
+  var homicide2 = 0
+  var grandLarceny2 = 0
+  var gta2 = 0
+  var burglary2 = 0
+  var assault2 = 0
+
+  var rape3 = 0
+  var robbery3 = 0
+  var homicide3 = 0
+  var grandLarceny3 = 0
+  var gta3 = 0
+  var burglary3 = 0
+  var assault3 = 0
+
 
 
     for(i = 0; i < input.length; i++){
       if(input[i]['offense'] == "RAPE"){
-        rape++
+          if(input[i]['compstat_year'] == "2015"){
+            rape++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            rape2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            rape3++
+          }
       }
       if(input[i]['offense'] == "ROBBERY"){
-        robbery++
+          if(input[i]['compstat_year'] == "2015"){
+            robbery++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            robbery2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            robbery3++
+          }
       }
       if(input[i]['offense'] == "MURDER & NON-NEGL. MANSLAUGHTE"){
-        homicide++
+          if(input[i]['compstat_year'] == "2015"){
+            homicide++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            homicide2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            homicide3++
+          }
       }
       if(input[i]['offense'] == "GRAND LARCENY"){
-        grandLarceny++
+          if(input[i]['compstat_year'] == "2015"){
+            grandLarceny++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            grandLarceny2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            grandLarceny3++
+          }
       }
       if(input[i]['offense'] == "GRAND LARCENY OF MOTOR VEHICLE"){
-        gta++
+          if(input[i]['compstat_year'] == "2015"){
+            gta++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            gta2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            gta3++
+          }
       }
       if(input[i]['offense'] == "BURGLARY"){
-        burglary++
+          if(input[i]['compstat_year'] == "2015"){
+            burglary++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            burglary2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            burglary3++
+          }
       }
       if(input[i]['offense'] == "FELONY ASSAULT"){
-        assault++
+          if(input[i]['compstat_year'] == "2015"){
+            assault++
+          }
+          if(input[i]['compstat_year'] == "2014"){
+            assault2++
+          }
+          if(input[i]['compstat_year'] == "2013"){
+            assault3++
+          }
       }
     }
 console.log(numOffenses)
-console.log(rape + " rapes.")
-console.log(robbery + " robberies.")
-console.log(homicide+ " homicides.")
-console.log(grandLarceny+ " thefts.")
-console.log(gta + " stolen cars.")
-console.log(burglary + " burglaries.")
-console.log(assault + " assaults.")
+console.log(rape + rape2 + rape3 + " rapes.")
+console.log(robbery + robbery2 + robbery3 + " robberies.")
+console.log(homicide + homicide2 + homicide3 + " homicides.")
+console.log(grandLarceny + grandLarceny2 + grandLarceny3 + " thefts.")
+console.log(gta + gta2 + gta3 + " stolen cars.")
+console.log(burglary + burglary2 + burglary3 + " burglaries.")
+console.log(assault + assault2 + assault3 + " assaults.")
 
-  var totalSketch = ((rape*25)+(robbery*10)+(homicide*70)+(burglary*8)+(assault*20))
+var totalrape = (rape + rape2 + rape3)
+var totalrobbery = (robbery + robbery2 + robbery3)
+var totalhomicide = (homicide + homicide2 + homicide3)
+var totalburglary = (burglary + burglary2 + burglary3)
+var totalassault = (assault + assault2 + assault3)
+
+var sketch2015 = (((rape*25)+(robbery*10)+(homicide*70)+(burglary*8)+(assault*20))*.8)
+var sketch2014 = (((rape2*25)+(robbery2*10)+(homicide2*70)+(burglary2*8)+(assault2*20))*.6)
+var sketch2013 = (((rape3*25)+(robbery3*10)+(homicide3*70)+(burglary3*8)+(assault3*20))*.4)
+
+var totalSketch = (sketch2013 + sketch2014 + sketch2015)
 console.log("Your sketch level is: " + totalSketch)
 
 }
