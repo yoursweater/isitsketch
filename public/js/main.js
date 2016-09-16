@@ -69,29 +69,48 @@ var getNtaNames = function(){
         item['population'] = ntaPop
         item['latitude'] = ''
         item['longitude'] = ''
+        item['zip'] = ''
         ntaArray.push(item);
 
       }
-        ntaArray.forEach(getNtaZip);
-        console.log(ntaArray)
+        ntaArray.forEach(getNtaLocation);
+        // console.log(ntaArray)
     })
   }
 
-    var getNtaZip = function(obj){
+    var getNtaLocation = function(obj){
       var ntaName = (obj['name'])
       $.ajax({
         dataType: 'json',
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + ntaName +"&key="+mapsToken,
+        url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + ntaName +"+nyc&key="+mapsToken,
         method: 'GET',
         success: function(data){
-          myLongitude = data['results'][0]['geometry']['location']['lng'];
-          myLatitude = data['results'][0]['geometry']['location']['lat'];
-          obj['latitude'] = myLatitude
-          obj['longitude'] = myLongitude
-          console.log(obj)
+          longitude = data['results'][0]['geometry']['location']['lng'];
+          latitude = data['results'][0]['geometry']['location']['lat'];
+          obj['latitude'] = latitude
+          obj['longitude'] = longitude
+          // console.log(obj)
+          getNtaZip(obj)
           }
+
       })
     };
+
+    var getNtaZip = function(obj){
+      var ntaLocation = (obj['latitude'] + ',' + obj['longitude'])
+            $.ajax({
+              dataType: 'json',
+              url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + ntaLocation +"&key="+mapsToken,
+              method: 'GET',
+              success: function(data){
+                zip = data['results'][0]['address_components'][7]['long_name']
+                obj['zip'] = zip
+                console.log(obj)
+                }
+
+            })
+          };
+
 
 
 
