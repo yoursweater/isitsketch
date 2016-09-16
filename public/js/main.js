@@ -10,7 +10,11 @@ $(document).ready(function() {
   var address;
   var myLongitude;
   var myLatitude;
+  var myNeighborhood;
   var search = $('.location-form');
+  var ntaLocationArr = [];
+  var ntaArray = [];
+
 
   //var userAddress = "10 E 21st St, New York NY"
   search.submit(function(s){
@@ -27,8 +31,10 @@ $(document).ready(function() {
       success: function(data){
         myLongitude = data['results'][0]['geometry']['location']['lng'];
         myLatitude = data['results'][0]['geometry']['location']['lat'];
-        console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude)
+        myNeighborhood = data['results'][0]['address_components'][2]['long_name'];
+        console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude + " and the neighborhood is " + myNeighborhood)
         getOpendata();
+        getNtaNames();
       }
     })
   })
@@ -46,6 +52,50 @@ $(document).ready(function() {
       sketchCalc(data);
     });
   }
+//////////////GET NEIGHBORHOOD POPULATION//////////////////
+var getNtaNames = function(){
+  var root = 'https://data.cityofnewyork.us/resource/wwhg-3wy7.json'
+  $.ajax({
+    dataType: 'json',
+    url: root,
+    method: 'GET',
+  }).then(function(data){
+      for(i=0; i<data.length; i++){
+        var ntaName = data[i]['nta_name']
+        var ntaPop = data[i]['population']
+
+        item = {}
+        item['name'] = ntaName
+        item['population'] = ntaPop
+        item['latitude'] = ''
+        item['longitude'] = ''
+        ntaArray.push(item);
+
+      }
+        ntaArray.forEach(getNtaZip);
+        console.log(ntaArray)
+    })
+  }
+
+    var getNtaZip = function(obj){
+      var ntaName = (obj['name'])
+      $.ajax({
+        dataType: 'json',
+        url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + ntaName +"&key="+mapsToken,
+        method: 'GET',
+        success: function(data){
+          myLongitude = data['results'][0]['geometry']['location']['lng'];
+          myLatitude = data['results'][0]['geometry']['location']['lat'];
+          obj['latitude'] = myLatitude
+          obj['longitude'] = myLongitude
+          console.log(obj)
+          }
+      })
+    };
+
+
+
+
 
 //////////////SKETCH CALCULATOR////////////////
 
@@ -70,7 +120,7 @@ function sketchCalc(input){
   var assault = 0
 
 
-  console.log(input[0]['offense'])
+  // console.log(input[0]['offense'])
 
     for(i = 0; i < input.length; i++){
       if(input[i]['offense'] == "RAPE"){
@@ -95,17 +145,17 @@ function sketchCalc(input){
         assault++
       }
     }
-console.log(numOffenses)
-console.log(rape)
-console.log(robbery)
-console.log(homicide)
-console.log(grandLarceny)
-console.log(gta)
-console.log(burglary)
-console.log(assault)
+// console.log(numOffenses)
+// console.log(rape)
+// console.log(robbery)
+// console.log(homicide)
+// console.log(grandLarceny)
+// console.log(gta)
+// console.log(burglary)
+// console.log(assault)
 
   var totalSketch = ((rape*25)+(robbery*10)+(homicide*30)+(grandLarceny)+(gta*6)+(burglary*8)+(assault*20))
-console.log("Your sketch level is: " + totalSketch)
+// console.log("Your sketch level is: " + totalSketch)
 
 }
 
