@@ -36,7 +36,7 @@ $(document).ready(function() {
 //////////////////NYC OPENDATA///////////////////
 
   var getOpendata = function () {
-    var root = 'https://data.cityofnewyork.us/resource/dvh8-u7es.json?$where=within_circle(location_1,%20'+myLatitude+',%20'+myLongitude+',%20500)and%20occurrence_year%20=%202015';
+    var root = 'https://data.cityofnewyork.us/resource/57mv-nv28.json?$query=SELECT%20ofns_desc%20WHERE%20within_circle(lat_lon,%20'+myLatitude+',%20'+myLongitude+',%20100)%20AND%20cmplnt_fr_dt%20%3E=%20%272013-12-31T00:00:00%27';
 
     $.ajax({
       dataType: 'json',
@@ -44,7 +44,8 @@ $(document).ready(function() {
       method: 'GET'
     }).then(function(data) {
       console.log(data)
-      sketchCalc(data);
+      console.log(data[0]['ofns_desc'])
+      // sketchCalc(data);
     });
   }
 
