@@ -4,6 +4,7 @@ const app = express()
 const port = 3000
 const path = require('path')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 
 //Http server
 
