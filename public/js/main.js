@@ -129,6 +129,10 @@ function sketchCalc(input){
     $("#results").append("<p class='response'>GET THE FUCK OUTTA THERE</p>");
   }
 
+  $('html, body').animate({
+    scrollTop: $("#results").offset().top
+  }, 1000);
+
 }
 
 });
