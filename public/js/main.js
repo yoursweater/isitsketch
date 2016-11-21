@@ -98,9 +98,36 @@ function sketchCalc(input){
   console.log("total thefts: " + thefts)
   console.log("total weapons: " + weapons)
 
+  //Methodology:
+
+  //Various offenses are weighted for sketchiness according to my completely arbitrary rating.
+  //However, thefts are in fact negatively correlated with sketchiness.
+  //The reason for this is that although theft is a crime, it tends to occur where
+  //there are greater numbers of peopl (hence more chances to steal) and more stores to rob from.
+  //The presence of stores to rob from is an indication of commerce, and hence,
+  //police presence. Accordingly, despite the high number of thefts in Times Square,
+  //one would be unlikely to say that it's sketchier than Bed-Stuy.
+
   var sketchLevel = ((rapes*10) + (robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
 
   console.log("Your sketch level is: " + sketchLevel)
+
+  if(sketchLevel <= 500){
+    $(".response").remove()
+    $("#results").append("<p class='response'>Your area is safe.</p>");
+  }
+  if(sketchLevel > 500 && sketchLevel <= 1000){
+    $(".response").remove()
+    $("#results").append("<p class='response'>Your hood is slightly sketchy.</p>");
+  }
+  if(sketchLevel > 1000 && sketchLevel <= 1500){
+    $(".response").remove()
+    $("#results").append("<p class='response'>Your hood is pretty sketchy.</p>");
+  }
+  if(sketchLevel > 1500){
+    $(".response").remove()
+    $("#results").append("<p class='response'>GET THE FUCK OUTTA THERE</p>");
+  }
 
 }
 
