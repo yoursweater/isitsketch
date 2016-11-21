@@ -131,8 +131,10 @@ function sketchCalc(input){
     $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
   }
   if(sketchLevel > 1500){
-    $(".response").remove()
-    $("#results").append("<p class='response'>GET THE FUCK OUTTA THERE</p>");
+    $(".response").remove();
+    $("#sketchypic").remove();
+    $("#results").append("<p class='response'>GET OUTTA THERE</p>");
+    $("#sketchZone").append('<iframe id="sketchypic" src="//giphy.com/embed/1h6WhJFUF8B1u" width="480" height="274" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/christmas-scared-kids-1h6WhJFUF8B1u"></a></p>');
   }
 
   $('html, body').animate({
