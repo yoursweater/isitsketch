@@ -1,17 +1,18 @@
 require('./app/index')
-const express = require('express')
-const app = express()
-const path = require('path')
-const exphbs = require('express-handlebars')
-var port = process.env.PORT || 8000
+var express = require('express')
+var request = require('request');
+var app = express()
+var path = require('path')
+var exphbs = require('express-handlebars')
 
 //Http server
 
+var port = process.env.PORT || 8000
 var server = app.listen(port);
 console.log('Listening on port ' + port);
 
 app.get('/', (request, response) => {
-  response.render('home', {})
+  response.render('home')
 })
 
 
