@@ -6,18 +6,30 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
         <title>Is it Sketch?</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
 
 
     <body>
-        <div class="container">
-            <h1 id="mainTitle" class="col s8 offset-s2">Is it Sketch?</h1>
 
-                {{{body}}}
-
+      <nav>
+        <div class="nav-wrapper orange lighten-2">
+          <a href="http://isitsketch.herokuapp.com" class="brand-logo center" style="font-family: 'Rock Salt', cursive;">Is it Sketch?</a>
+          <ul class="left hide-on-med-and-down">
+            <li><a href="http://github.com/yoursweater">Github</a></li>
+            <li><a href="http://daneversen.com">Daneversen.com</a></li>
+          </ul>
         </div>
+      </nav>
+
+
+        <div class="container">
+        <img class="responsive-img" src="img/sketchcity.jpg">
+            {{{body}}}
+        </div>
+
 
         <script src="js/main.js"></script>
     </body>
