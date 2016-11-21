@@ -1,3 +1,8 @@
-h1{
+#mainTitle{
+  text-align: center;
   color: green;
+}
+
+#theBody{
+  text-align: center;
 }
