@@ -1,22 +1,17 @@
 require('./app/index')
 const express = require('express')
 const app = express()
-const port = 3000
 const path = require('path')
 const exphbs = require('express-handlebars')
+var port = process.env.PORT || 8000
 
 //Http server
 
+var server = app.listen(port);
+console.log('Listening on port ' + port);
+
 app.get('/', (request, response) => {
   response.render('home', {})
-})
-
-app.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
-
-  console.log(`server is listening on ${port}`)
 })
 
 
