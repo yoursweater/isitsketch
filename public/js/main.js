@@ -112,17 +112,23 @@ function sketchCalc(input){
 
   console.log("Your sketch level is: " + sketchLevel)
 
-  if(sketchLevel <= 500){
-    $(".response").remove()
-    $("#results").append("<p class='response'>Your area is safe.</p>");
+  if(sketchLevel <= 300){
+    $(".response").remove();
+    $("#sketchypic").remove();
+    $("#results").append("<p class='response'>Your hood is safe.</p>");
+    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/pleasantville.jpg'>");
   }
-  if(sketchLevel > 500 && sketchLevel <= 1000){
-    $(".response").remove()
+  if(sketchLevel > 300 && sketchLevel <= 800){
+    $(".response").remove();
+    $("#sketchypic").remove();
     $("#results").append("<p class='response'>Your hood is slightly sketchy.</p>");
+    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/sketchypic.jpg'>");
   }
-  if(sketchLevel > 1000 && sketchLevel <= 1500){
-    $(".response").remove()
+  if(sketchLevel > 800 && sketchLevel <= 1400){
+    $(".response").remove();
+    $("#sketchypic").remove();
     $("#results").append("<p class='response'>Your hood is pretty sketchy.</p>");
+    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
   }
   if(sketchLevel > 1500){
     $(".response").remove()
