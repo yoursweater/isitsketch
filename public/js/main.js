@@ -4,6 +4,8 @@ $(document).ready(function() {
 
 
 
+
+
 /////////////Geocoder//////////////
   var mapsToken = "AIzaSyDPMSlU4RW9QMz8ceTsBbBevwtLJvOLDAQ";
   var userAddress;
@@ -44,8 +46,15 @@ $(document).ready(function() {
       method: 'GET'
     }).then(function(data) {
       console.log(data)
-      console.log(data[0]['ofns_desc'])
-      sketchCalc(data);
+        if (data[0] != null){
+            console.log(data[0]['ofns_desc'])
+            sketchCalc(data);
+        }
+        else{
+            $(".response").remove();
+            $("#sketchypic").remove();
+            $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p>");
+            }
     });
   }
 
@@ -64,7 +73,7 @@ function sketchCalc(input){
   var weapons = 0;
 
     for(i = 0; i < input.length; i++){
-      if(input[i]['ofns_desc'] === "RAPE"){
+      if(input[i]['ofns_desc'] === "SEX CRIMES"){
             rapes++
         }
       if(input[i]['ofns_desc'] === "ROBBERY"){
@@ -98,6 +107,7 @@ function sketchCalc(input){
   console.log("total thefts: " + thefts)
   console.log("total weapons: " + weapons)
 
+
   //Methodology:
 
   //Various offenses are weighted for sketchiness according to my completely arbitrary rating.
@@ -108,33 +118,49 @@ function sketchCalc(input){
   //police presence. Accordingly, despite the high number of thefts in Times Square,
   //one would be unlikely to say that it's sketchier than Bed-Stuy.
 
-  var sketchLevel = ((rapes*10) + (robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
+  var sketchLevel = ((rapes*15) + (robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
 
   console.log("Your sketch level is: " + sketchLevel)
 
   if(sketchLevel <= 300){
     $(".response").remove();
     $("#sketchypic").remove();
+    $(".giveDetails").remove();
     $("#results").append("<p class='response'>Your hood is safe.</p>");
     $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/pleasantville.jpg'>");
+    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+     //Initializations
+    $('.collapsible').collapsible();
   }
   if(sketchLevel > 300 && sketchLevel <= 800){
     $(".response").remove();
     $("#sketchypic").remove();
+    $(".giveDetails").remove();
     $("#results").append("<p class='response'>Your hood is slightly sketchy.</p>");
     $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/sketchypic.jpg'>");
+    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+     //Initializations
+    $('.collapsible').collapsible();
   }
   if(sketchLevel > 800 && sketchLevel <= 1400){
     $(".response").remove();
     $("#sketchypic").remove();
+    $(".giveDetails").remove();
     $("#results").append("<p class='response'>Your hood is pretty sketchy.</p>");
     $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
+    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+     //Initializations
+    $('.collapsible').collapsible();
   }
   if(sketchLevel > 1500){
     $(".response").remove();
     $("#sketchypic").remove();
+    $(".giveDetails").remove();
     $("#results").append("<p class='response'>GET OUTTA THERE</p>");
     $("#sketchZone").append('<iframe id="sketchypic" src="//giphy.com/embed/1h6WhJFUF8B1u" width="480" height="274" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/christmas-scared-kids-1h6WhJFUF8B1u"></a></p>');
+    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+     //Initializations
+    $('.collapsible').collapsible();
   }
 
   $('html, body').animate({
