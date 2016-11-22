@@ -53,6 +53,7 @@ $(document).ready(function() {
         else{
             $(".response").remove();
             $("#sketchypic").remove();
+            $(".giveDetails").remove();
             $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p>");
             }
     });
