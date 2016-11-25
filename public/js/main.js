@@ -55,6 +55,11 @@ $(document).ready(function() {
             $("#sketchypic").remove();
             $(".giveDetails").remove();
             $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p><p class='response'>Hint: Try the following format - <i>120th and Frederick Douglass, New York</i></p>");
+
+             $('html,body').animate({
+              scrollTop: $(".response").offset().top
+             }, 1000);
+
             }
     });
   }
