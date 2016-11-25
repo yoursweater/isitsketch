@@ -54,7 +54,7 @@ $(document).ready(function() {
             $(".response").remove();
             $("#sketchypic").remove();
             $(".giveDetails").remove();
-            $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p>");
+            $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p><p class='response'>Hint: Try the following format - <i>120th and Frederick Douglass, New York</i></p>");
             }
     });
   }
@@ -169,5 +169,11 @@ function sketchCalc(input){
   }, 1000);
 
 }
+
+  $('#details').click(function(){
+     $('html,body').animate({
+      scrollTop: $(".detailText").offset().top
+  }, 1000);
+  })
 
 });
