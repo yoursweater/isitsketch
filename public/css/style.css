@@ -19,6 +19,10 @@ p{
   font-size: 150%;
 }
 
+#example{
+  font-size: 100%;
+}
+
 @media only screen and (max-width: 800px){
   p{
     font-size: 150%;
