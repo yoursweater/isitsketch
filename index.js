@@ -4,6 +4,8 @@ var request = require('request');
 var app = express()
 var path = require('path')
 var exphbs = require('express-handlebars')
+// var React = require('react')
+// var ReactDOM = require('react-dom')
 
 //Http server
 
