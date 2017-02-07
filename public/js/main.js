@@ -3,6 +3,8 @@ $(document).ready(function() {
   console.log('script loaded')
 
 
+  $('.container').fadeToggle(2000, 'linear')
+
 
 /////////////REACT////////////////
 
@@ -28,6 +30,14 @@ $(document).ready(function() {
     address = userAddress.replace(/\s+/g, '+');
     console.log(address);
 
+  $('.location-form').keypress(function(e){
+    if (e.which == 13){
+    e.preventDefault();
+    userAddress = $(this).children('input[name=location]').val();
+    address = userAddress.replace(/\s+/g, '+');
+    console.log(address);
+    }
+  })
 
     $.ajax({                                  // Initial call to Google Maps
       method: "GET",
