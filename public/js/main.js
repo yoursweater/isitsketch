@@ -137,7 +137,7 @@ function sketchCalc(input){
     // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/pleasantville.jpg'>");
     // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
     // $('.collapsible').collapsible();
-      $("#results").append('<p class="response">Nope!</p>')
+      // $("#results").append('<p class="response">Nope!</p>')
   }
   if(sketchLevel > 300 && sketchLevel <= 800){
     $(".response").remove();
@@ -147,7 +147,7 @@ function sketchCalc(input){
     // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/sketchypic.jpg'>");
     // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
     // $('.collapsible').collapsible();
-    $("#results").append('<p class="response">Slightly.</p>')
+    // $("#results").append('<p class="response">Slightly.</p>')
   }
   if(sketchLevel > 800 && sketchLevel <= 1400){
     $(".response").remove();
@@ -157,7 +157,7 @@ function sketchCalc(input){
     // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
     // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
     // $('.collapsible').collapsible();
-    $("#results").append('<p class="response">Yes.</p>')
+    // $("#results").append('<p class="response">Yes.</p>')
   }
   if(sketchLevel > 1500){
     $(".response").remove();
@@ -167,7 +167,7 @@ function sketchCalc(input){
     // $("#sketchZone").append('<iframe id="sketchypic" src="//giphy.com/embed/1h6WhJFUF8B1u" width="480" height="274" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/christmas-scared-kids-1h6WhJFUF8B1u"></a></p>');
     // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
     // $('.collapsible').collapsible();
-    $("#results").append('<p class="response">Run.</p>')
+    // $("#results").append('<p class="response">Run.</p>')
   }
 
 }
