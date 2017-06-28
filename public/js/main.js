@@ -1,36 +1,36 @@
 $(document).ready(function() {
-
   console.log('script loaded')
-
   $('#display').fadeToggle(2000, 'linear')
 
+/////////////Variables//////////////
 
-/////////////Geocoder//////////////
   var mapsToken = "AIzaSyDPMSlU4RW9QMz8ceTsBbBevwtLJvOLDAQ";
   var userAddress;
   var address;
   var myLongitude;
   var myLatitude;
   var search = $('.location-form');
+  var userAddress = "10 E 21st St, New York NY"
 
-  //var userAddress = "10 E 21st St, New York NY"
-  search.submit(function(s){
-    console.log("clicked");
-    s.preventDefault();
-    userAddress = $(this).children('input[name=location]').val();
-    address = userAddress.replace(/\s+/g, '+');
-    console.log(address);
+////////////Form//////////////////
 
-  $('.location-form').keypress(function(e){
-    if (e.which == 13){
-    e.preventDefault();
-    userAddress = $(this).children('input[name=location]').val();
-    address = userAddress.replace(/\s+/g, '+');
-    console.log(address);
+  $('.location-form').keypress(function(event){
+    if (event.which == 13){
+        console.log('search entered')
+        event.preventDefault();
+        userAddress = $("#input1").val()
+        address = userAddress.replace(/\s+/g, '+');
+        getMaps(address)
+        return false;
+    } else {
+        return true;
     }
-  })
+  });
 
-    $.ajax({                                  // Initial call to Google Maps
+///////////Maps/////////////////
+
+  function getMaps(address){
+      $.ajax({
       method: "GET",
       url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address +"&key="+mapsToken,
       success: function(data){
@@ -40,7 +40,7 @@ $(document).ready(function() {
         getOpendata();
       }
     })
-  })
+  }
 
 //////////////////NYC OPENDATA///////////////////
 
@@ -52,29 +52,23 @@ $(document).ready(function() {
       url: root,
       method: 'GET'
     }).then(function(data) {
-      console.log(data)
+            console.log(data)
         if (data[0] != null){
-            console.log(data[0]['ofns_desc'])
             sketchCalc(data);
-        }
-        else{
-            $(".response").remove();
-            $("#sketchypic").remove();
-            $(".giveDetails").remove();
-            $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p><p class='response'>Hint: Try the following format - <i>120th and Frederick Douglass, New York</i></p>");
-
-             $('html,body').animate({
-              scrollTop: $(".response").offset().top
-             }, 1000);
-
+        } else{
+            // $(".response").remove();
+            // $("#sketchypic").remove();
+            // $(".giveDetails").remove();
+            // $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p><p class='response'>Hint: Try the following format - <i>120th and Frederick Douglass, New York</i></p>");
+            //  $('html,body').animate({
+            //   scrollTop: $(".response").offset().top
+            //  }, 1000);
+            alert("Sorry! We didn't recognize that address. Try entering it in another format.")
             }
-    });
+      });
   }
 
-
 //////////////SKETCH CALCULATOR////////////////
-
-
 
 function sketchCalc(input){
   var numOffenses = input.length;
@@ -86,9 +80,9 @@ function sketchCalc(input){
   var weapons = 0;
 
     for(i = 0; i < input.length; i++){
-      if(input[i]['ofns_desc'] === "SEX CRIMES"){
-            rapes++
-        }
+      // if(input[i]['ofns_desc'] === "SEX CRIMES"){
+      //       rapes++
+      //   }
       if(input[i]['ofns_desc'] === "ROBBERY"){
             robberies++
         }
@@ -113,7 +107,7 @@ function sketchCalc(input){
     }
 
   console.log(numOffenses)
-  console.log("total rapes: " + rapes)
+  // console.log("total rapes: " + rapes)
   console.log("total robberies: " + robberies)
   console.log("total assaults: " + assaults)
   console.log("total burglaries: " + burglaries)
@@ -131,61 +125,56 @@ function sketchCalc(input){
   //police presence. Accordingly, despite the high number of thefts in Times Square,
   //one would be unlikely to say that it's sketchier than Bed-Stuy.
 
-  var sketchLevel = ((rapes*15) + (robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
+  var sketchLevel = ((robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
 
   console.log("Your sketch level is: " + sketchLevel)
 
   if(sketchLevel <= 300){
     $(".response").remove();
-    $("#sketchypic").remove();
-    $(".giveDetails").remove();
-    $("#results").append("<p class='response'>Your hood is safe.</p>");
-    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/pleasantville.jpg'>");
-    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
-     //Initializations
-    $('.collapsible').collapsible();
+    // $("#sketchypic").remove();
+    // $(".giveDetails").remove();
+    // $("#results").append("<p class='response'>Your hood is safe.</p>");
+    // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/pleasantville.jpg'>");
+    // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+    // $('.collapsible').collapsible();
+      $("#results").append('<p class="response">Nope!</p>')
   }
   if(sketchLevel > 300 && sketchLevel <= 800){
     $(".response").remove();
-    $("#sketchypic").remove();
-    $(".giveDetails").remove();
-    $("#results").append("<p class='response'>Your hood is slightly sketchy.</p>");
-    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/sketchypic.jpg'>");
-    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
-     //Initializations
-    $('.collapsible').collapsible();
+    // $("#sketchypic").remove();
+    // $(".giveDetails").remove();
+    // $("#results").append("<p class='response'>Your hood is slightly sketchy.</p>");
+    // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/sketchypic.jpg'>");
+    // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+    // $('.collapsible').collapsible();
+    $("#results").append('<p class="response">Slightly.</p>')
   }
   if(sketchLevel > 800 && sketchLevel <= 1400){
     $(".response").remove();
-    $("#sketchypic").remove();
-    $(".giveDetails").remove();
-    $("#results").append("<p class='response'>Your hood is pretty sketchy.</p>");
-    $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
-    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
-     //Initializations
-    $('.collapsible').collapsible();
+    // $("#sketchypic").remove();
+    // $(".giveDetails").remove();
+    // $("#results").append("<p class='response'>Your hood is pretty sketchy.</p>");
+    // $("#sketchZone").append("<img class='responsive-img' id='sketchypic' src='img/quitesketchy.jpg'>");
+    // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+    // $('.collapsible').collapsible();
+    $("#results").append('<p class="response">Yes.</p>')
   }
   if(sketchLevel > 1500){
     $(".response").remove();
-    $("#sketchypic").remove();
-    $(".giveDetails").remove();
-    $("#results").append("<p class='response'>GET OUTTA THERE</p>");
-    $("#sketchZone").append('<iframe id="sketchypic" src="//giphy.com/embed/1h6WhJFUF8B1u" width="480" height="274" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/christmas-scared-kids-1h6WhJFUF8B1u"></a></p>');
-    $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
-     //Initializations
-    $('.collapsible').collapsible();
+    // $("#sketchypic").remove();
+    // $(".giveDetails").remove();
+    // $("#results").append("<p class='response'>GET OUTTA THERE</p>");
+    // $("#sketchZone").append('<iframe id="sketchypic" src="//giphy.com/embed/1h6WhJFUF8B1u" width="480" height="274" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/christmas-scared-kids-1h6WhJFUF8B1u"></a></p>');
+    // $("#details").append('<ul class="giveDetails collapsible" data-collapsible="accordion"><li><div class="collapsible-header">Details</div><div class="collapsible-body"><p class="detailText">Robberies: '+robberies+'</p><p class="detailText">Sex Crimes: '+rapes+'</p><p class="detailText">Assaults: '+assaults+'</p><p class="detailText">Weapons Charges: '+weapons+'</p></div></li></ul>');
+    // $('.collapsible').collapsible();
+    $("#results").append('<p class="response">Run.</p>')
   }
-
-  $('html, body').animate({
-    scrollTop: $("#results").offset().top
-  }, 1000);
 
 }
 
-  $('#details').click(function(){
-     $('html,body').animate({
-      scrollTop: $(".detailText").offset().top
-  }, 1000);
-  })
+
 
 });
+
+
+
