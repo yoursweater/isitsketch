@@ -2,16 +2,7 @@ $(document).ready(function() {
 
   console.log('script loaded')
 
-
-  $('.container').fadeToggle(2000, 'linear')
-
-
-/////////////REACT////////////////
-
-// ReactDOM.render(
-//   <h1>Hello, world!</h1>,
-//   document.getElementById('root')
-// );
+  $('#display').fadeToggle(2000, 'linear')
 
 
 /////////////Geocoder//////////////
