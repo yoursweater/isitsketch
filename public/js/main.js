@@ -48,6 +48,7 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
 
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
+  $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Try Again</a>').appendTo("#newResults")
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
 
@@ -63,6 +64,8 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
     if(sketchLevel > 1500) {
     $('#dial').addClass('sketchlevel4')
   }
+
+
 
 }
 

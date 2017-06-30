@@ -361,3 +361,8 @@
 .sketchlevel4 {
   left: 600px !important;
 }
+
+#tryAgain {
+  margin-left:45%;
+  margin-top: 20px;
+}
