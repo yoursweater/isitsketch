@@ -34,7 +34,7 @@ $(document).ready(function() {
 function loadScreen() {
   console.log('about to fade')
   $('#load').fadeTo('slow', 1, function(){
-    $('#load').delay(2000).fadeTo('slow',0);
+    $('#load').delay(2200).fadeTo('slow',0);
   });
 }
 
