@@ -47,8 +47,23 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
 
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
+  $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
+
+  if(sketchLevel <= 300) {
+    $('#dial').addClass('sketchlevel1')
+  }
+    if(sketchLevel > 300 && sketchLevel <= 800) {
+    $('#dial').addClass('sketchlevel2')
+  }
+    if(sketchLevel > 800 && sketchLevel <= 1400){
+    $('#dial').addClass('sketchlevel3')
+  }
+    if(sketchLevel > 1500) {
+    $('#dial').addClass('sketchlevel4')
+  }
+
 }
 
 ///////////Maps/////////////////

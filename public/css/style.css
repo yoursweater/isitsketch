@@ -322,3 +322,42 @@
   color: red;
   font-family: 'Finger Paint', cursive;
 }
+
+#indicator {
+  width: 600px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+#indicator #bar {
+  width: 100%;
+  height: 18px;
+  border-radius: 15px;
+  box-shadow: 0 0 0 4px white;
+  background: linear-gradient(to right, #5398F5, red);
+}
+#indicator #dial {
+  width: 18px;
+  height: 30px;
+  margin-top: -2px;
+  box-shadow: 0 0 0 4px white, 0 0 6px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  position: absolute;
+  top: -4px;
+  left: 50px;
+  transition: 0.1s;
+}
+
+.sketchlevel1 {
+  left: 150px !important;
+}
+.sketchlevel2 {
+  left: 300px !important;
+}
+.sketchlevel3 {
+  left: 450px !important;
+}
+.sketchlevel4 {
+  left: 600px !important;
+}
