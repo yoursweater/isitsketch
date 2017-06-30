@@ -15,22 +15,37 @@
 
 <body>
 
-    <!-- <div class="tint" id="theDisplay"> -->
-        <div class="main_overlay">
-        <h1 id="mainTitle">Is it Sketch?</h1>
-        <form class="location-form">
-            <div class="text-input">
-              <input type="text" name="location" id="input1" placeholder="e.g., 120th and Frederick Douglass">
-              <label for="input1">Address</label>
+
+    <div class="main_overlay">
+        <div class="main_container">
+            <h1 id="mainTitle">Is it Sketch?</h1>
+            <form class="location-form">
+                <div class="text-input">
+                  <input type="text" name="location" id="input1" placeholder="e.g., 120th and Frederick Douglass">
+                  <label for="input1">Address</label>
+                </div>
+            </form>
+            <div id="load">
+              <div>G</div>
+              <div>N</div>
+              <div>I</div>
+              <div>D</div>
+              <div>A</div>
+              <div>O</div>
+              <div>L</div>
             </div>
-        </form>
-<!--     </div> -->
-    <div class="fullscreen-bg">
-        <video loop muted autoplay poster="img/sketchcity.jpg" class="fullscreen-bg_video">
-            <source src="img/nyc.mp4" type="video/mp4">
-        </video>
+        </div>
+
+
+<!-- Full screen - don't touch -->
+            <div class="fullscreen-bg">
+                <video loop muted autoplay poster="img/sketchcity.jpg" class="fullscreen-bg_video">
+                    <source src="img/nyc.mp4" type="video/mp4">
+                </video>
+            </div>
     </div>
-    </div>
+
+
 
 <script src="js/main.js"></script>
 </body>

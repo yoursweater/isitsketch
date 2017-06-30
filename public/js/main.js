@@ -18,6 +18,8 @@ $(document).ready(function() {
     if (event.which == 13){
         console.log('search entered')
         event.preventDefault();
+        loadScreen();
+
         userAddress = $("#input1").val()
         address = userAddress.replace(/\s+/g, '+');
         getMaps(address)
@@ -26,6 +28,16 @@ $(document).ready(function() {
         return true;
     }
   });
+
+///////////Loading Animation///////
+
+function loadScreen() {
+  console.log('about to fade')
+  $('#load').fadeTo('slow', 1, function(){
+    $('#load').delay(2000).fadeTo('slow',0);
+  });
+}
+
 
 ///////////Maps/////////////////
 
