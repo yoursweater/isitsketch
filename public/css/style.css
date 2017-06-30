@@ -309,3 +309,16 @@
 .displayMode {
   opacity: 1 !important;
 }
+
+
+/* RESULTS */
+
+#result-level {
+  color: white;
+  text-align: center;
+}
+
+.redText {
+  color: red;
+  font-family: 'Finger Paint', cursive;
+}

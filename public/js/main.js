@@ -33,15 +33,22 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
   $('#load').fadeTo('slow', 1, function(){
     $('#mainTitle').fadeTo('slow',0)
     $('.location-form').fadeTo('slow',0)
-    $('#load').delay(2200).fadeTo('slow',0, displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons));
+    $('#load').delay(2200).fadeTo('slow',0, function() {
+      $('.location-form').remove()
+      setTimeout(function(){
+       displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons)
+      }, 2000)
+    });
   });
 }
 
 /////////////Display Results/////////////////
 
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
-  console.log('sketch level coming in:' + sketchLevel)
-  console.log('there were this many robberies' + robberies)
+
+  $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
+  var audio = new Audio('sound/gunsound.mp3')
+  audio.play();
 }
 
 ///////////Maps/////////////////
@@ -80,7 +87,7 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
             //  $('html,body').animate({
             //   scrollTop: $(".response").offset().top
             //  }, 1000);
-            alert("Sorry! We didn't recognize that address. Try entering it in another format.")
+            alert("Sorry! We didn't recognize that address (New York City addresses only). Try entering it in another format, and be specific.")
             }
       });
   }
