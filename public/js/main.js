@@ -18,7 +18,6 @@ $(document).ready(function() {
     if (event.which == 13){
         console.log('search entered')
         event.preventDefault();
-        loadScreen();
         userAddress = $("#input1").val()
         address = userAddress.replace(/\s+/g, '+');
         getMaps(address)
@@ -30,18 +29,19 @@ $(document).ready(function() {
 
 ///////////Loading Animation///////
 
-function loadScreen() {
+function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
   $('#load').fadeTo('slow', 1, function(){
     $('#mainTitle').fadeTo('slow',0)
     $('.location-form').fadeTo('slow',0)
-    $('#load').delay(2200).fadeTo('slow',0, displayResults());
+    $('#load').delay(2200).fadeTo('slow',0, displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons));
   });
 }
 
 /////////////Display Results/////////////////
 
-function displayResults() {
-  console.log('about to display')
+function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
+  console.log('sketch level coming in:' + sketchLevel)
+  console.log('there were this many robberies' + robberies)
 }
 
 ///////////Maps/////////////////
@@ -186,7 +186,7 @@ function sketchCalc(input){
     // $('.collapsible').collapsible();
     // $("#results").append('<p class="response">Run.</p>')
   }
-
+ loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons);
 }
 
 
