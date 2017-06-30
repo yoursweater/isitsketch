@@ -1,8 +1,13 @@
-/* html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-} */
+.main_overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.3),
+    rgba(0,0,0,.7)
+    );
+  height: 100vh;
+}
+
+
 
 #theDisplay {
   height: 100%;
@@ -21,20 +26,26 @@
 }
 
 #mainTitle{
+/*     background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.1),
+    rgba(0,0,0,.5)
+    ); */
   position: relative;
   z-index: 4;
   text-align: center;
   color: white;
   margin:0 auto;
-  padding-top: 4vh;
+  padding-top: 16vh;
   font-family: Indie Flower, cursive;
   font-size: 20vmin;
 }
 
 .text-input {
   position: relative;
-  margin: 35vh auto;
+  margin: 22vh auto;
   width: 400px;
+  right: 50px;
 }
 .text-input input[type="text"] {
   display: inline-block;
@@ -42,7 +53,7 @@
   height: 40px;
   box-sizing: border-box;
   outline: none;
-  border: 1px solid lightgray;
+  border: 1px solid aqua;
   border-radius: 3px;
   padding: 10px 10px 10px 110px;
   -webkit-transition: all 0.1s ease-out;
