@@ -19,7 +19,6 @@ $(document).ready(function() {
         console.log('search entered')
         event.preventDefault();
         loadScreen();
-
         userAddress = $("#input1").val()
         address = userAddress.replace(/\s+/g, '+');
         getMaps(address)
@@ -32,12 +31,18 @@ $(document).ready(function() {
 ///////////Loading Animation///////
 
 function loadScreen() {
-  console.log('about to fade')
   $('#load').fadeTo('slow', 1, function(){
-    $('#load').delay(2200).fadeTo('slow',0);
+    $('#mainTitle').fadeTo('slow',0)
+    $('.location-form').fadeTo('slow',0)
+    $('#load').delay(2200).fadeTo('slow',0, displayResults());
   });
 }
 
+/////////////Display Results/////////////////
+
+function displayResults() {
+  console.log('about to display')
+}
 
 ///////////Maps/////////////////
 
