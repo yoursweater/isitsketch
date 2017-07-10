@@ -32,6 +32,7 @@ $(document).ready(function() {
 function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
   $('#load').fadeTo('slow', 1, function(){
     $('#mainTitle').fadeTo('slow',0)
+    $('#instructions').fadeTo('slow',0)
     $('.location-form').fadeTo('slow',0)
     $('#load').delay(2200).fadeTo('slow',0, function() {
       $('.location-form').remove()

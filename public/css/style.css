@@ -112,19 +112,28 @@
     }
   }
 
+/* INSTRUCTIONS */
 
+#instructions {
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 0.2em;
+  color: white;
+  opacity: 1;
+  position:absolute;
+  width:600px;
+  height:36px;
+  left:50%;
+  top:40%;
+  margin-left:-300px;
+  overflow:visible;
+  font-size: 2vmin;
+}
 
 
 /* LOADING SCREEN */
 
-/* #testText {
-  color: white;
-  position: relative ;
-  z-index: 4;
-  text-align: center;
-  display: none;
-}
- */
+
 
 
 #load {
@@ -366,3 +375,5 @@
   margin-left:45%;
   margin-top: 20px;
 }
+
+
