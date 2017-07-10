@@ -49,7 +49,7 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
 
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
-  $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Try Again</a>').appendTo("#newResults")
+  $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
 
@@ -99,13 +99,6 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
         if (data[0] != null){
             sketchCalc(data);
         } else{
-            // $(".response").remove();
-            // $("#sketchypic").remove();
-            // $(".giveDetails").remove();
-            // $("#results").append("<p class='response'>Sorry, we couldn't find that location.</p><p class='response'>Are you sure you entered in a valid address in New York City?</p><p class='response'>Hint: Try the following format - <i>120th and Frederick Douglass, New York</i></p>");
-            //  $('html,body').animate({
-            //   scrollTop: $(".response").offset().top
-            //  }, 1000);
             alert("Sorry! We didn't recognize that address (New York City addresses only). Try entering it in another format, and be specific.")
             }
       });
