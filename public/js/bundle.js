@@ -3533,7 +3533,8 @@ function writeRankData(area, rank) {
 
 ///////////Loading Animation///////
 
-function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
+function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
+  console.log(topFiveArr)
   $('#load').fadeTo('slow', 1, function(){
     $('#mainTitle').fadeTo('slow',0)
     $('#instructions').fadeTo('slow',0)
@@ -3672,11 +3673,11 @@ function sketchCalc(input){
     snap.forEach(function (childsnap){
       topFiveArr.unshift(childsnap.val())
     })
-    console.log(topFiveArr)
+
+ loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr);
   })
 
 
- loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons);
 }
 
 

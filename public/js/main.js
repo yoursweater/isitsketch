@@ -51,7 +51,7 @@ function writeRankData(area, rank) {
 
 ///////////Loading Animation///////
 
-function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
+function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
   $('#load').fadeTo('slow', 1, function(){
     $('#mainTitle').fadeTo('slow',0)
     $('#instructions').fadeTo('slow',0)
@@ -59,7 +59,7 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
     $('#load').delay(2200).fadeTo('slow',0, function() {
       $('.location-form').remove()
       setTimeout(function(){
-       displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons)
+       displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr)
       }, 2000)
     });
   });
@@ -67,7 +67,7 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 
 /////////////Display Results/////////////////
 
-function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons) {
+function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
 
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
@@ -190,11 +190,11 @@ function sketchCalc(input){
     snap.forEach(function (childsnap){
       topFiveArr.unshift(childsnap.val())
     })
-    console.log(topFiveArr)
+
+ loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr);
   })
 
 
- loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons);
 }
 
 
