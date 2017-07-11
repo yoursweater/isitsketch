@@ -182,17 +182,17 @@ function sketchCalc(input){
 
   writeRankData(userAddress,sketchLevel);
 
-  var topFiveRef = firebase.database().ref('sketchRanking/').orderByChild('rank')
+  var topFiveRef = firebase.database().ref('sketchRanking/').orderByChild('rank').limitToLast(5)
+
+  var topFiveArr = []
 
   var topFiveSketch = topFiveRef.on('value', function(snap){
     snap.forEach(function (childsnap){
-      console.log(childsnap.val())
+      topFiveArr.unshift(childsnap.val())
     })
+    console.log(topFiveArr)
   })
-  // console.log(topFiveSketch)
-  // topFiveSketch.forEach(function(snap){
-  //   console.log(snap.val())
-  // })
+
 
  loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons);
 }
