@@ -1,7 +1,30 @@
 $(document).ready(function() {
   console.log('webpack bundle initiated')
-  var firebase = require("firebase");
   $('#display').fadeToggle(2000, 'linear')
+
+  ////////////FIREBASE//////////////
+
+  var firebase = require("firebase");
+
+  var config = {
+  apiKey: "AIzaSyDXdBaef4C8gaT-LqR7v7jsvgRwJbt7RAs",
+  authDomain: "isitsketch.firebaseapp.com",
+  databaseURL: "https://isitsketch.firebaseio.com",
+  storageBucket: "isitsketch.appspot.com",
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+
+function writeUserData(area, rank) {
+  firebase.database().ref('sketchRanking/').push({
+    area:area,
+    rank:rank
+  });
+}
+
+writeUserData('harlem', 1200)
+writeUserData('midtown', 300)
+
 
 /////////////Variables//////////////
 
