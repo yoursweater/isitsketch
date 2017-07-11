@@ -3497,15 +3497,13 @@ $(document).ready(function() {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-function writeUserData(area, rank) {
+function writeRankData(area, rank) {
   firebase.database().ref('sketchRanking/').push({
     area:area,
     rank:rank
   });
 }
 
-writeUserData('harlem', 1200)
-writeUserData('midtown', 300)
 
 
 /////////////Variables//////////////
@@ -3571,9 +3569,6 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
     if(sketchLevel > 1500) {
     $('#dial').addClass('sketchlevel4')
   }
-
-
-
 }
 
 ///////////Maps/////////////////
@@ -3670,6 +3665,8 @@ function sketchCalc(input){
   var sketchLevel = ((robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
 
   console.log("Your sketch level is: " + sketchLevel)
+
+  writeRankData(userAddress,sketchLevel);
 
   if(sketchLevel <= 300){
     $(".response").remove();
