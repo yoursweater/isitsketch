@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  console.log('script loaded')
+  console.log('webpack bundle initiated')
+  var firebase = require("firebase");
   $('#display').fadeToggle(2000, 'linear')
 
 /////////////Variables//////////////
