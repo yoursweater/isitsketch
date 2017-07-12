@@ -68,7 +68,7 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 /////////////Display Results/////////////////
 
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
-
+console.log(topFiveArr)
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
@@ -182,18 +182,21 @@ function sketchCalc(input){
 
   writeRankData(userAddress,sketchLevel);
 
-  var topFiveRef = firebase.database().ref('sketchRanking/').orderByChild('rank').limitToLast(5)
+  var topFiveRef = firebase.database().ref('sketchRanking/').orderByChild('rank')
 
   var topFiveArr = []
+  var areaArr = []
 
   var topFiveSketch = topFiveRef.on('value', function(snap){
     snap.forEach(function (childsnap){
-      topFiveArr.unshift(childsnap.val())
+      var currentArea = childsnap.val()['area']
+      if (areaArr.indexOf(currentArea) === -1){
+         areaArr.push(currentArea)
+         topFiveArr.unshift(childsnap.val())
+       }
     })
-
  loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr);
   })
-
 
 }
 
