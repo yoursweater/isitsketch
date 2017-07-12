@@ -372,6 +372,7 @@
 #tryAgain {
     transform: translate3d(-50%, 100%, 0);
     left: 50%;
+    z-index: 1000;
 }
 
 #explanation {
