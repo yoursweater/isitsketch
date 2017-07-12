@@ -383,3 +383,28 @@
     margin: 0 auto;
 }
 
+#topFive {
+     position: relative;
+    text-align: center;
+    color: white;
+    width: 100%;
+    top: 100px;
+}
+
+#newResults {
+  position: absolute;
+  top: 10%;
+}
+
+#topList {
+  position: relative;
+  top: 100px;
+  width: 100%;
+  text-align: center;
+}
+
+#rankText {
+  color: red;
+  font-family: 'Finger Paint', cursive;
+  font-size: 1.5em;
+}

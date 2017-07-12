@@ -3555,6 +3555,13 @@ console.log(topFiveArr)
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
   $('<p id="explanation">*These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity. The resulting SketchLevel ranges from 0 (no crimes) to 2000+ (lots of severe crime activity).</p>').appendTo("#newResults")
+  $('#newResults').append('<h4 id="topFive">Top Five Sketchy Areas:</h4><ul id="topList"></ul>')
+  for (i = 0; i < 5; i++){
+    var currentTopArea = topFiveArr[i]['area']
+    var currentTopRank = topFiveArr[i]['rank']
+    $('#topList').append('<li style="color:white; font-size:1em;">' + currentTopArea + ': ' +'<span id="rankText">' + currentTopRank + '</span>' +'</li>')
+  }
+
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
 
