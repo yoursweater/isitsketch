@@ -374,4 +374,12 @@
     left: 50%;
 }
 
+#explanation {
+    position: relative;
+    top: 70px;
+    color: white;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+}
 

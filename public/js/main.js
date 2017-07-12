@@ -72,13 +72,14 @@ console.log(topFiveArr)
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
+  $('<p id="explanation">*These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity. The resulting SketchLevel ranges from 0 (no crimes) to 2000+ (lots of severe crime activity).</p>').appendTo("#newResults")
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
 
-  if(sketchLevel <= 300) {
+  if(sketchLevel <= 400) {
     $('#dial').addClass('sketchlevel1')
   }
-    if(sketchLevel > 300 && sketchLevel <= 800) {
+    if(sketchLevel > 400 && sketchLevel <= 800) {
     $('#dial').addClass('sketchlevel2')
   }
     if(sketchLevel > 800 && sketchLevel <= 1400){
