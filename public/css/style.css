@@ -357,16 +357,20 @@
 }
 
 .sketchlevel1 {
-  left: 150px !important;
+  left: 5% !important;
 }
 .sketchlevel2 {
-  left: 300px !important;
+  left: 25%!important;
 }
 .sketchlevel3 {
-  left: 450px !important;
+  left: 50% !important;
 }
 .sketchlevel4 {
-  left: 600px !important;
+  left: 75% !important;
+}
+
+.sketchlevel5 {
+  left: 95% !important;
 }
 
 #tryAgain {

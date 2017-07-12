@@ -92,8 +92,11 @@ console.log(topFiveArr)
     if(sketchLevel > 800 && sketchLevel <= 1400){
     $('#dial').addClass('sketchlevel3')
   }
-    if(sketchLevel > 1500) {
+    if(sketchLevel > 1500 && sketchLevel <= 2000) {
     $('#dial').addClass('sketchlevel4')
+  }
+  if(sketchLevel > 2000) {
+    $('#dial').addClass('sketchlevel5')
   }
 }
 
