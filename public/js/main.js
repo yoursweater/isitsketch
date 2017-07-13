@@ -71,11 +71,12 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
 console.log(topFiveArr)
+  $('#newResults').append('<h4>' + userAddress + '</h4>')
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
-  $('<p id="explanation">*These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity. The resulting SketchLevel ranges from 0 (no crimes) to 2000+ (lots of severe crime activity).</p>').appendTo("#newResults")
-  $('#newResults').append('<h4 id="topFive">Top Five Sketchy Areas:</h4><ul id="topList"></ul>')
+  $('<p id="explanation">These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity. The resulting SketchLevel ranges from 0 (no crimes) to 2000+ (lots of severe crime activity).</p>').appendTo("#newResults")
+  $('#newResults').append('<h4 id="topFive">Can you beat these scores?:</h4><ul id="topList"></ul>')
   for (i = 0; i < 5; i++){
     var currentTopArea = topFiveArr[i]['area']
     var currentTopRank = topFiveArr[i]['rank']
