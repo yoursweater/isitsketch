@@ -24,6 +24,7 @@ function writeRankData(area, rank) {
 
 
 
+
 /////////////Variables//////////////
 
   var mapsToken = "AIzaSyDPMSlU4RW9QMz8ceTsBbBevwtLJvOLDAQ";
@@ -32,12 +33,13 @@ function writeRankData(area, rank) {
   var myLongitude;
   var myLatitude;
   var search = $('.location-form');
-  var userAddress = "10 E 21st St, New York NY"
+  var userAddress = "10 E 21st St, New York NY";
 
 ////////////Form//////////////////
 
   $('.location-form').keypress(function(event){
     if (event.which == 13){
+    $(this).find('input').attr('disabled','disabled');
         console.log('search entered')
         event.preventDefault();
         userAddress = $("#input1").val()
