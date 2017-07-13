@@ -415,3 +415,8 @@
   font-family: 'Finger Paint', cursive;
   font-size: 1.5em;
 }
+
+#feedback {
+  color: white;
+  text-align: center;
+}

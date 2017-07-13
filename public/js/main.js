@@ -71,7 +71,7 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
 console.log(topFiveArr)
-  $('#newResults').append('<h4>' + userAddress + '</h4>')
+  $('#newResults').append('<h4 id="feedback">' + userAddress + '</h4>')
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
