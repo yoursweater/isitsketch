@@ -3543,7 +3543,9 @@ function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapon
 }
 
 /////////////Display Results/////////////////
+var enabled = true;
 function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
+  if (enabled){
   $('#newResults').append('<h4 id="feedback" style="color:white;text-align:center;">' + userAddress + '</h4>')
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
@@ -3573,6 +3575,8 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
   if(sketchLevel > 2000) {
     $('#dial').addClass('sketchlevel5')
   }
+  enabled = false;
+}
 }
 
 ///////////Maps/////////////////
