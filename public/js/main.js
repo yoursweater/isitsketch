@@ -32,6 +32,7 @@ function writeRankData(area, rank) {
   $('.location-form').keypress(function(event){
     if (event.which == 13){
     $(this).find('input').attr('disabled','disabled');
+        $(window).unbind("keypress")
         console.log('search entered')
         event.preventDefault();
         userAddress = $("#input1").val()
