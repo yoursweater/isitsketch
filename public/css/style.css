@@ -444,4 +444,19 @@
       margin-right: auto;
       width: 100%;
     }
+    #load {
+      width: 99%;
+    }
+    #indicator {
+      display: none;
+    }
+    #topFive {
+      display: none;
+    }
+    #topList {
+      display: none;
+    }
+    #explanation {
+      display: none;
+    }
 }
