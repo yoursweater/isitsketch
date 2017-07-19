@@ -383,7 +383,7 @@
     position: relative;
     top: 70px;
     color: white;
-    width: 50%;
+    width: 70%;
     text-align: center;
     margin: 0 auto;
 }
@@ -394,6 +394,7 @@
     color: white;
     width: 100%;
     top: 100px;
+    margin: 0;
 }
 
 #newResults {
@@ -419,6 +420,12 @@
 #feedback {
   color: white;
   text-align: center;
+}
+
+.dataText {
+    color: red;
+  font-family: 'Finger Paint', cursive;
+  font-size: 1em;
 }
 
 /* MOBILE OPTIMIZATION */
@@ -451,12 +458,13 @@
       display: none;
     }
     #topFive {
-      display: none;
+      /* display: none; */
     }
     #topList {
-      display: none;
+      /* display: none; */
     }
     #explanation {
       display: none;
     }
 }
+
