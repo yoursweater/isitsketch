@@ -67,9 +67,9 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
   $('#newResults').append('<h4 id="feedback" style="color:white;text-align:center;">' + userAddress + '</h4>')
   $("<h2 id='result-level'>Sketch Level: <span class='redText'>"+ sketchLevel +"</span></h2>").appendTo("#newResults")
   $('<div id="indicator"><div id="bar"></div><div id="dial"></div></div>').appendTo("#newResults")
-  $('#newResults').append('<p style="color:white;text-align:center;margin:0 auto;">Robberies: <span class="dataText">'+ robberies +'</span> Assaults: <span class="dataText">'+assaults+'</span> Burglaries: <span class="dataText">'+burglaries+'</span> Thefts: <span class="dataText">'+thefts+'</span> Weapons: <span class="dataText">'+weapons+'</span> </p>')
+  $('#newResults').append('<p style="color:white;text-align:center;margin:0 auto;">Robberies: <span class="dataText">'+ robberies +'</span> Assaults: <span class="dataText">'+assaults+'</span> Burglaries: <span class="dataText">'+burglaries+'</span> Weapons: <span class="dataText">'+weapons+'</span> </p>')
   $('<a id="tryAgain" class="waves-effect waves-light btn" href="http://isitsketch.com">Enter a New Address</a>').appendTo("#newResults")
-  $('<p id="explanation">These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity. The resulting SketchLevel ranges from 0 (no crimes) to 2000+ (lots of severe crime activity).</p>').appendTo("#newResults")
+  $('<p id="explanation">These results are based on NYC\'s OpenData information platform. The crimes have been weighted to reflect their severity, and adjusted for population. Hence, more crimes does not necessarily mean a higher overall Sketch Level. The resulting Sketch Level ranges from 0 (very few serious crimes) to 2000+ (lots of dangerous crime activity).</p>').appendTo("#newResults")
   $('#newResults').append('<h4 id="topFive">Can you beat these scores?:</h4><ul id="topList"></ul>')
   for (i = 0; i < 5; i++){
     var currentTopArea = topFiveArr[i]['area']
@@ -175,6 +175,9 @@ function sketchCalc(input){
     //police presence. Accordingly, despite the high number of thefts in Times Square,
     //one would be unlikely to say that it's sketchier than Bed-Stuy.
     var sketchLevel = ((robberies*5) + (assaults*9) + (weapons*8) + (burglaries*7) - (thefts))
+    if (sketchLevel < 0) {
+      sketchLevel = 0
+    }
     console.log("Your sketch level is: " + sketchLevel)
     writeRankData(userAddress,sketchLevel);
     var topFiveRef = firebase.database().ref('sketchRanking/').orderByChild('rank')
