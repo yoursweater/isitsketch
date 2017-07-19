@@ -78,13 +78,13 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
   var audio = new Audio('sound/gunsound.mp3')
   audio.play();
 
-  if(sketchLevel <= 400) {
+  if(sketchLevel <= 500) {
     $('#dial').addClass('sketchlevel1')
   }
-    if(sketchLevel > 400 && sketchLevel <= 800) {
+    if(sketchLevel > 500 && sketchLevel <= 1000) {
     $('#dial').addClass('sketchlevel2')
   }
-    if(sketchLevel > 800 && sketchLevel <= 1400){
+    if(sketchLevel > 1000 && sketchLevel <= 1500){
     $('#dial').addClass('sketchlevel3')
   }
     if(sketchLevel > 1500 && sketchLevel <= 2000) {
