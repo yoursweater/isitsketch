@@ -3486,8 +3486,6 @@ module.exports = exports['default'];
 $(document).ready(function () {
   $('#display').fadeToggle(2000, 'linear');
 
-  var hello = "hi there";
-
   ////////////FIREBASE//////////////
   var firebase = __webpack_require__(28);
   var config = {
@@ -3508,19 +3506,16 @@ $(document).ready(function () {
 
   /////////////Variables//////////////
   var mapsToken = "AIzaSyDPMSlU4RW9QMz8ceTsBbBevwtLJvOLDAQ";
-  var userAddress;
   var address;
   var myLongitude;
   var myLatitude;
-  var search = $('.location-form');
   var userAddress = "10 E 21st St, New York NY";
 
   ////////////Form//////////////////
   $('.location-form').keypress(function (event) {
-    if (event.which == 13) {
+    if (event.which === 13) {
       $(this).find('input').attr('disabled', 'disabled');
       $(window).unbind("keypress");
-      console.log('search entered');
       event.preventDefault();
       userAddress = $("#input1").val();
       address = userAddress.replace(/\s+/g, '+');
@@ -3593,7 +3588,7 @@ $(document).ready(function () {
       success: function success(data) {
         myLongitude = data['results'][0]['geometry']['location']['lng'];
         myLatitude = data['results'][0]['geometry']['location']['lat'];
-        console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude);
+        // console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude);
         getOpendata();
       }
     });
@@ -3618,33 +3613,31 @@ $(document).ready(function () {
 
   //////////////SKETCH CALCULATOR////////////////
   function sketchCalc(input) {
-    var numOffenses = input.length;
-    var rapes = 0;
     var robberies = 0;
     var assaults = 0;
     var burglaries = 0;
     var thefts = 0;
     var weapons = 0;
-    for (i = 0; i < input.length; i++) {
-      if (input[i]['ofns_desc'] === "ROBBERY") {
+    for (var _i = 0; _i < input.length; _i++) {
+      if (input[_i]['ofns_desc'] === "ROBBERY") {
         robberies++;
       }
-      if (input[i]['ofns_desc'] === "FELONY ASSAULT") {
+      if (input[_i]['ofns_desc'] === "FELONY ASSAULT") {
         assaults++;
       }
-      if (input[i]['ofns_desc'] === "BURGLARY") {
+      if (input[_i]['ofns_desc'] === "BURGLARY") {
         burglaries++;
       }
-      if (input[i]['ofns_desc'] === "ASSAULT 3 & RELATED OFFENSES") {
+      if (input[_i]['ofns_desc'] === "ASSAULT 3 & RELATED OFFENSES") {
         assaults++;
       }
-      if (input[i]['ofns_desc'] === "PETIT LARCENY") {
+      if (input[_i]['ofns_desc'] === "PETIT LARCENY") {
         thefts++;
       }
-      if (input[i]['ofns_desc'] === "GRAND LARCENY") {
+      if (input[_i]['ofns_desc'] === "GRAND LARCENY") {
         thefts++;
       }
-      if (input[i]['ofns_desc'] === "DANGEROUS WEAPONS") {
+      if (input[_i]['ofns_desc'] === "DANGEROUS WEAPONS") {
         weapons++;
       }
     }

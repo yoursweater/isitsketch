@@ -1,0 +1,21 @@
+{
+    "esversion": 6,
+    "eqeqeq": true,
+    "eqnull": true,
+    "expr": true,
+    "latedef": true,
+    "noarg": true,
+    "node": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+    "jquery": true,
+    "asi": false,
+    "sub": true,
+    "globals": {
+        "document": true,
+        "window": true,
+        "alert": true,
+        "Audio": true
+    }
+}
