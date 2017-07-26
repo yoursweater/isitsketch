@@ -1,6 +1,8 @@
 $(document).ready(function() {
 $('#display').fadeToggle(2000, 'linear')
 
+const hello = "hi there"
+
 ////////////FIREBASE//////////////
 var firebase = require("firebase");
 var config = {
