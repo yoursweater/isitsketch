@@ -29,11 +29,19 @@ function writeRankData(area, rank) {
 ////////////Form//////////////////
   $('.location-form').keypress(function(event){
     if (event.which === 13){
+      console.log('hey')
     $(this).find('input').attr('disabled','disabled');
       $(window).unbind("keypress");
       event.preventDefault();
       userAddress = $("#input1").val();
       address = userAddress.replace(/\s+/g, '+');
+      address = userAddress + ', New York New York'
+      console.log(address)
+      $('#load').fadeTo('slow', 1, function(){
+        $('#mainTitle').fadeTo('slow',0);
+        $('#instructions').fadeTo('slow',0);
+        $('.location-form').fadeTo('slow',0);
+      });
       getMaps(address);
       event.stopPropagation();
       return false;
@@ -42,19 +50,49 @@ function writeRankData(area, rank) {
       }
   });
 
+  ///////////Maps/////////////////
+  function getMaps(address){
+
+    $.ajax({
+    method: "GET",
+    url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address +"&key="+mapsToken,
+    success: function(data){
+      console.log(data)
+      myLongitude = data['results'][0]['geometry']['location']['lng'];
+      myLatitude = data['results'][0]['geometry']['location']['lat'];
+      // console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude);
+      getOpendata();
+    }
+  });
+}
+
+//////////////////NYC OPENDATA///////////////////
+var getOpendata = function () {
+
+  var root = 'https://data.cityofnewyork.us/resource/57mv-nv28.json?$query=SELECT%20ofns_desc%20WHERE%20within_circle(lat_lon,%20'+myLatitude+',%20'+myLongitude+',%20200)%20AND%20cmplnt_fr_dt%20%3E=%20%272013-12-31T00:00:00%27';
+  $.ajax({
+    dataType: 'json',
+    url: root,
+    method: 'GET'
+  }).then(function(data) {
+      if (data[0] != null){
+          sketchCalc(data);
+      } else{
+          alert("Sorry! We didn't recognize that address (New York City addresses only). Try entering it in another format, and be specific.");
+          $('.location-form').find('input').prop('disabled', false);
+          }
+    });
+};
+
 ///////////Loading Animation///////
 function loadScreen(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr) {
-  $('#load').fadeTo('slow', 1, function(){
-    $('#mainTitle').fadeTo('slow',0);
-    $('#instructions').fadeTo('slow',0);
-    $('.location-form').fadeTo('slow',0);
-    $('#load').delay(2200).fadeTo('slow',0, function() {
+
+    $('#load').fadeTo('slow',0, function() {
       $('.location-form').remove();
       setTimeout(function(){
         displayResults(sketchLevel, robberies, assaults, burglaries, thefts, weapons, topFiveArr);
       }, 2000);
     });
-  });
 }
 
 /////////////Display Results/////////////////
@@ -95,36 +133,6 @@ function displayResults(sketchLevel, robberies, assaults, burglaries, thefts, we
 }
 }
 
-///////////Maps/////////////////
-  function getMaps(address){
-      $.ajax({
-      method: "GET",
-      url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address +"&key="+mapsToken,
-      success: function(data){
-        myLongitude = data['results'][0]['geometry']['location']['lng'];
-        myLatitude = data['results'][0]['geometry']['location']['lat'];
-        // console.log("My longitude is: " + myLongitude + " and my latitude is: " + myLatitude);
-        getOpendata();
-      }
-    });
-  }
-
-//////////////////NYC OPENDATA///////////////////
-  var getOpendata = function () {
-    var root = 'https://data.cityofnewyork.us/resource/57mv-nv28.json?$query=SELECT%20ofns_desc%20WHERE%20within_circle(lat_lon,%20'+myLatitude+',%20'+myLongitude+',%20200)%20AND%20cmplnt_fr_dt%20%3E=%20%272013-12-31T00:00:00%27';
-    $.ajax({
-      dataType: 'json',
-      url: root,
-      method: 'GET'
-    }).then(function(data) {
-        if (data[0] != null){
-            sketchCalc(data);
-        } else{
-            alert("Sorry! We didn't recognize that address (New York City addresses only). Try entering it in another format, and be specific.");
-            $('.location-form').find('input').prop('disabled', false);
-            }
-      });
-  };
 
 //////////////SKETCH CALCULATOR////////////////
 function sketchCalc(input){

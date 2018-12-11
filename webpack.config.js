@@ -1,14 +1,9 @@
+const path = require('path');
+
 module.exports = {
-    entry: "./public/js/main.js",
-    output: {
-        path: __dirname,
-        filename: "./public/js/bundle.js"
-    },
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
-      }]
-    }
+  entry: './public/js/main.js',
+  output: {
+    path: path.resolve(__dirname, 'public/js'),
+    filename: 'mybundle.js'
+  }
 };
